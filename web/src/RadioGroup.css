@@ -1,0 +1,15 @@
+.radio-group {
+    background-color: #e7e7e7;
+    color: black;
+    margin: .5em 0;
+    padding: 0 1em;
+}
+.radio-group-option {
+    padding: .5em .75em;
+    cursor: pointer;
+    display: inline-block;
+}
+.radio-group-option.selected {
+    background-color: darkblue;
+    color: white;
+}

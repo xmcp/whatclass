@@ -1,0 +1,7 @@
+.idea/
+.scrapy/
+node_modules/
+__pycache__/
+build/
+course.csv
+course.json

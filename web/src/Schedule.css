@@ -1,0 +1,7 @@
+.schedule-course {
+    margin: 1em;
+}
+.schedule-course .desc {
+    opacity: .6;
+    margin: 0;
+}
