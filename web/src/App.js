@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import {RadioGroup} from './RadioGroup';
-import {Schedule} from './Schedule';
+import {Schedule, KeywordResult} from './Schedule';
 
 
 const DB_ROOM_VER='1';
@@ -49,7 +49,9 @@ class App extends Component {
                 'building': null,
                 'floor': null,
                 'room': null,
+                'keyword': '', // ui value
             },
+            'keyword': null, // show value
         };
         this.rooms={};
     }
@@ -89,7 +91,7 @@ class App extends Component {
             open_req.onsuccess=(event)=>{
                 this.db=event.target.result;
 
-                const tx=this.db.transaction(['course'],'readwrite');
+                const tx=this.db.transaction(['course'],'readonly');
                 const store=tx.objectStore('course');
                 const count_req=store.count();
                 count_req.onsuccess=()=>{
@@ -146,12 +148,39 @@ class App extends Component {
 
                 options[name]=value;
 
+                options.keyword='';
                 return {
                     options: options,
+                    keyword: null,
                 };
             });
         }
     }
+
+    on_keyword_input(event) {
+        const val=event.target.value;
+        this.setState((prev)=>{
+            let options=Object.assign({},prev.options);
+            options.keyword=val;
+            return {
+                options: options,
+            };
+        });
+    }
+    on_keyword_press(event) {
+        if(event.key==='Enter') {
+            this.setState((prev)=>({
+                keyword: prev.options.keyword||null,
+                options: {
+                    'building': null,
+                    'floor': null,
+                    'room': null,
+                    'keyword': prev.options.keyword,
+                }
+            }));
+        }
+    }
+
 
     render() {
         if(this.state.loading_status==='loading')
@@ -187,10 +216,21 @@ class App extends Component {
                             db={this.db} room={this.state.options.building+this.state.options.room}
                         /> :
                         <div>
-                            <p>选择教室来查看课表</p>
-                            <p>数据来自 2018-2019 第一学期 选课系统</p>
+                            <p>
+                                <input value={this.state.options.keyword} className="keyword-input"
+                                   onChange={this.on_keyword_input.bind(this)} onKeyPress={this.on_keyword_press.bind(this)}
+                                />
+                            </p>
+                            {this.state.keyword ?
+                                <KeywordResult
+                                    db={this.db} keyword={this.state.keyword}
+                                /> :
+                                <p>选择教室 或者 按关键字查询</p>
+                            }
                         </div>
                     }
+                    <hr />
+                    <p>数据来自 2018-2019 第一学期 选课系统</p>
                     <br />
                 </div>
             );

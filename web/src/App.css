@@ -3,3 +3,8 @@
     margin: auto;
     text-align: center;
 }
+
+.keyword-input {
+    min-width: 200px;
+    padding-left: .5em;
+}
