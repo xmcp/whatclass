@@ -176,7 +176,7 @@ export class KeywordResult extends PureComponent {
                         &nbsp; <b>{x.name}</b>
                     </p>
                     <p className="desc">{x.type} {x.school} {x.teacher}</p>
-                    <p className="desc">{x.day_tip} {x.description}</p>
+                    <p className="desc">{x.building_room} {x.day_tip} {x.description}</p>
                 </div>
             </div>
         ));

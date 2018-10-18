@@ -225,12 +225,13 @@ class App extends Component {
                                 <KeywordResult
                                     db={this.db} keyword={this.state.keyword}
                                 /> :
-                                <p>选择教室 或者 按关键字查询</p>
+                                <p>选择教室 或 查询课程关键字</p>
                             }
                         </div>
                     }
                     <hr />
                     <p>数据来自 2018-2019 第一学期 选课系统</p>
+                    <p>&copy;2018 xmcp <a href="https://github.com/xmcp/whatclass" target="_blank" rel="noopener noreferrer">GitHub</a></p>
                     <br />
                 </div>
             );
