@@ -4,8 +4,8 @@ import {RadioGroup} from './RadioGroup';
 import {Schedule, KeywordResult} from './Schedule';
 
 
-const DB_ROOM_VER='1';
-const DB_COURSE_VER='2';
+const DB_ROOM_VER='2';
+const DB_COURSE_VER='3';
 const INDEXED_DB_VER=1;
 
 const BUILDING_SORT_KEY={
@@ -230,8 +230,8 @@ class App extends Component {
                         </div>
                     }
                     <hr />
-                    <p>数据来自 2018-2019 第一学期 选课系统</p>
-                    <p>&copy;2018 xmcp <a href="https://github.com/xmcp/whatclass" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+                    <p>数据来自 2018-2019 第二学期 选课系统</p>
+                    <p>&copy;20189 xmcp <a href="https://github.com/xmcp/whatclass" target="_blank" rel="noopener noreferrer">GitHub</a></p>
                     <br />
                 </div>
             );

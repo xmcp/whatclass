@@ -50,7 +50,7 @@ for course in courses_raw:
             building=building[:-1]
 
         if (join(course['name']),join(course['teacher']),join(course["classid"]),time_from,join(course['description'])) in history:
-            print('duplicate',course)
+            #print('duplicate',course)
             continue
         history.add((join(course['name']),join(course['teacher']),join(course["classid"]),time_from,join(course['description'])))
 
