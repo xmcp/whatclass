@@ -4,8 +4,8 @@ import {RadioGroup} from './RadioGroup';
 import {Schedule, KeywordResult} from './Schedule';
 
 
-const DB_ROOM_VER='2';
-const DB_COURSE_VER='3';
+const DB_ROOM_VER='3';
+const DB_COURSE_VER='4';
 const INDEXED_DB_VER=1;
 
 const BUILDING_SORT_KEY={
@@ -67,7 +67,7 @@ class App extends Component {
                 return resolve();
             } else {
                 console.log('download room list');
-                fetch('/data/room_list.json')
+                fetch('/data/room_list.json?_t='+(+new Date()))
                     .then((res)=>res.text())
                     .then((text)=>{
                         localStorage['DB_ROOM']=text;
@@ -99,7 +99,7 @@ class App extends Component {
                         return resolve();
                     else {
                         console.log('download course list');
-                        fetch('/data/course_list.json')
+                        fetch('/data/course_list.json?_t='+(+new Date()))
                             .then((res)=>res.json())
                             .then((json)=>{
                                 const tx=this.db.transaction(['course'],'readwrite');
@@ -117,6 +117,7 @@ class App extends Component {
     }
 
     init_db() {
+        console.log('init db');
         Promise.all([
             this.init_room(),
             this.init_course()
@@ -134,6 +135,17 @@ class App extends Component {
                     loading_status: 'failed',
                 })
             });
+    }
+
+    clear_db() {
+        delete localStorage['DB_ROOM_VER'];
+        delete localStorage['DB_ROOM'];
+        delete localStorage['DB_COURSE_VER'];
+        this.setState({
+            loading_status: 'loading'
+        }, ()=>{
+            this.init_db();
+        });
     }
 
     set_options_meta(name) {
@@ -230,8 +242,11 @@ class App extends Component {
                         </div>
                     }
                     <hr />
-                    <p>数据来自 2018-2019 第二学期 选课系统</p>
-                    <p>&copy;20189 xmcp <a href="https://github.com/xmcp/whatclass" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+                    <p>
+                        数据来自 2019.03 选课系统
+                        &nbsp; <button onClick={this.clear_db.bind(this)}>清除缓存</button>
+                    </p>
+                    <p>&copy;2019 xmcp <a href="https://github.com/xmcp/whatclass" target="_blank" rel="noopener noreferrer">GitHub</a></p>
                     <br />
                 </div>
             );
