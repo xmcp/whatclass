@@ -2,6 +2,8 @@ import React, {PureComponent} from 'react';
 import { RadioGroup } from './RadioGroup';
 import './Schedule.css';
 
+const SEMESTER_START=1567958400000;  // 2019/9/9 0:00 GMT+8
+
 const MAX_WEEK=17;
 const ICON_PREV=' << ';
 const ICON_NEXT=' >> ';
@@ -29,7 +31,7 @@ export class Schedule extends PureComponent {
     }
 
     gettoday() {
-        let now=new Date(), start=new Date(1550419200000); // 2018/2/18 0:00 GMT+8
+        let now=new Date(), start=new Date(SEMESTER_START);
         let cur_week=Math.floor(1+(now-start)/1000/86400/7);
         if(cur_week<1 || cur_week>MAX_WEEK) cur_week=null;
         this.setState({

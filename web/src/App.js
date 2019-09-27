@@ -4,8 +4,8 @@ import {RadioGroup} from './RadioGroup';
 import {Schedule, KeywordResult} from './Schedule';
 
 
-const DB_ROOM_VER='3';
-const DB_COURSE_VER='4';
+const DB_ROOM_VER='4';
+const DB_COURSE_VER='5';
 const INDEXED_DB_VER=1;
 
 const BUILDING_SORT_KEY={
@@ -243,7 +243,7 @@ class App extends Component {
                     }
                     <hr />
                     <p>
-                        数据来自 2019.03 选课系统
+                        数据来自 2019.10 选课系统
                         &nbsp; <button onClick={this.clear_db.bind(this)}>清除缓存</button>
                     </p>
                     <p>&copy;2019 xmcp <a href="https://github.com/xmcp/whatclass" target="_blank" rel="noopener noreferrer">GitHub</a></p>
