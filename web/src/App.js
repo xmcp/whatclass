@@ -5,7 +5,7 @@ import {Schedule, KeywordResult} from './Schedule';
 
 
 const DB_ROOM_VER='4';
-const DB_COURSE_VER='5';
+const DB_COURSE_VER='6';
 const INDEXED_DB_VER=1;
 
 const BUILDING_SORT_KEY={

@@ -19,6 +19,7 @@ history=set()
 for course in courses_raw:
     for time_room_txt in course['time_room']:
         time_room_parse=time_room_re.match(time_room_txt)
+        
         if not time_room_parse:
             print('invalid time_room',time_room_txt)
             continue
@@ -49,10 +50,10 @@ for course in courses_raw:
         if building.endswith('楼'):
             building=building[:-1]
 
-        if (join(course['name']),join(course['teacher']),join(course["classid"]),time_from,join(course['description'])) in history:
+        if (join(course['name']),join(course['teacher']),join(course["classid"]),time_from,week_day,join(course['description'])) in history:
             #print('duplicate',course)
             continue
-        history.add((join(course['name']),join(course['teacher']),join(course["classid"]),time_from,join(course['description'])))
+        history.add((join(course['name']),join(course['teacher']),join(course["classid"]),time_from,week_day,join(course['description'])))
 
         if building not in building_blacklist:
             rooms.setdefault(building,set()).add(room)
