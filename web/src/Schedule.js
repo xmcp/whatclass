@@ -7,7 +7,7 @@ const SEMESTER_START=1567958400000;  // 2019/9/9 0:00 GMT+8
 const MAX_WEEK=17;
 const ICON_PREV=' << ';
 const ICON_NEXT=' >> ';
-const WEEK_HAN='啊一二三四五六日';
+const WEEK_HAN='日一二三四五六日';
 
 export class Schedule extends PureComponent {
     constructor(props) {
